@@ -121,7 +121,8 @@ public extension DataSourceProvider where CellConfig.View: UITableViewCell {
         }
 
         dataSource.tableCommitEditingStyleForRow = { [unowned self] (tableView, editingStyle, indexPath) in
-            self.tableEditingController?.commitEditing(&self.dataSource, tableView, editingStyle, indexPath)
+            let item = self.dataSource.item(atIndexPath: indexPath)!
+            self.tableEditingController?.commitEditing(item, tableView, editingStyle, indexPath)
         }
 
         return dataSource
